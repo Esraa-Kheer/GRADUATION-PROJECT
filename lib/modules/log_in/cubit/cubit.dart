@@ -27,7 +27,6 @@ DioHelper.postData(
   //print(value.data);
   loginModel=AppLoginModel.fromJson(value.data);
   print(loginModel.status);
-  //(loginModel.data.email);
   emit(AppLoginSuccessState(loginModel));
 }).catchError((error){
   print(error.toString());

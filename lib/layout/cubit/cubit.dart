@@ -37,6 +37,7 @@ void changeBottom(int index){
     DioHelper.getData(
       
       url: CITY,
+      //id: id,
       token: token,
     ).then((value) {
       citiesModel = CitiesModel.fromJson(value.data);
@@ -55,14 +56,12 @@ void changeBottom(int index){
 
   void getUserData() {
     emit(AppLoadingUserDataState());
-
     DioHelper.getData(
       url: PROFILE,
       token: token,
     ).then((value) {
+      print(token.toString());
       userModel = AppLoginModel.fromJson(value.data);
-      //print(userModel.status);
-      //print(userModel.message);
       printFullText(userModel.data.name);
 
       emit(AppSuccessUserDataState(userModel));
