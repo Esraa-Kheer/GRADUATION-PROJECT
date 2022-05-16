@@ -1,10 +1,14 @@
-import 'dart:ui';
+
+
+
+import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:e_guide/layout/cubit/cubit.dart';
 import 'package:e_guide/layout/cubit/states.dart';
 import 'package:e_guide/models/city_model/city_model.dart';
+import 'package:e_guide/modules/city_info/city_info.dart';
 import 'package:e_guide/modules/map/map_screen.dart';
 import 'package:e_guide/shared/components/components.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,7 +26,7 @@ late CitiesModel citiesModel;
       builder: (context, state) {
         return ConditionalBuilder(
             condition: AppCubit.get(context).citiesModel!=null,
-            builder: (context) => HomeBuilder( AppCubit.get(context).citiesModel!),
+            builder: (context) => HomeBuilder( AppCubit.get(context).citiesModel!,context),
             fallback: (context) => Center(child: CircularProgressIndicator()),
         );
       },
@@ -31,7 +35,7 @@ late CitiesModel citiesModel;
 }
 
 
-Widget HomeBuilder(CitiesModel citiesModel)=>Scaffold(
+Widget HomeBuilder(CitiesModel citiesModel,BuildContext context)=>Scaffold(
     body: SingleChildScrollView(
       child: Column(
        children: [
@@ -64,11 +68,24 @@ Widget HomeBuilder(CitiesModel citiesModel)=>Scaffold(
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontSize: 18,
+                                textBaseline: TextBaseline.alphabetic,
                               ),
                             ),
                             onTap: (){
-                              print("clicked");
+                              print('clicked');
+
+
+                              navigateTo( context, CityInfoScreen(
+                                pic: e.pic,
+                                name: e.name,
+                                area: e.area,
+                                population: e.population,
+                                aboutTheCity: e.aboutTheCity,
+                                lat: e.lat,
+                                lng: e.lng,
+                              ));
                             },
+                            
                             leading: Icon(Icons.circle,size: 15,color: Colors.teal,),
                             trailing: Icon(Icons.arrow_forward_ios_outlined,size: 15,),
                             contentPadding: EdgeInsets.symmetric(vertical: -30),
@@ -131,12 +148,14 @@ Widget HomeBuilder(CitiesModel citiesModel)=>Scaffold(
     )
 );
 
-Widget buildCityNameItem()=>ListTile(
+Widget buildCityNameItem(BuildContext context)=>ListTile(
   leading: Icon(Icons.circle,size: 20,color: Colors.teal,),
   title: Text('Isamailia',
     style: TextStyle(
         fontSize: 17,
-        fontWeight: FontWeight.w600
+        fontWeight: FontWeight.w600,
+
+
     ),
   ),
   onTap: (){
@@ -145,21 +164,5 @@ Widget buildCityNameItem()=>ListTile(
   trailing: Icon(Icons.arrow_forward_ios_outlined,),
 );
 
-/*Widget BuildMapIcon()=>Container(
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(15),
-    color: Colors.teal,
-  ),
-  child: IconButton(
-    splashRadius: 200,
-    icon: const Icon(Icons.pin_drop_outlined,color: Colors.white,),
-    onPressed: (){
-      Navigator.push(
-         ,
-        MaterialPageRoute(builder: (context) => const MapScreen()),
-      );
-    },
-  ),
-);
 
-*/
+

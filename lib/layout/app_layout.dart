@@ -38,44 +38,16 @@ class _HomeLayoutState extends State<HomeLayout> {
                   child: const ListTile(
                     leading: Icon(Icons.menu_sharp,color: Colors.white,size: 30,),
                     title:  Text(
-            "Government",
-              style: TextStyle(
-                color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800
-              ),
+                      "E_GUIDE",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800
+                      ),
 
-                  ),
+                    ),
                   ),
                 ),
-                myDivider(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-                buildCityNameItem(),
-
-                /*ListView.separated(
-              shrinkWrap: true,
-                itemBuilder: (context, index) => buildCityNameItem(),
-                separatorBuilder: (context, index) => myDivider(),
-                itemCount: 10
-            ),*/
               ],
             ),
           ),
@@ -125,16 +97,3 @@ class _HomeLayoutState extends State<HomeLayout> {
     );
   }
 }
-Widget buildCityNameItem()=>ListTile(
-  leading: Icon(Icons.circle,size: 20,color: Colors.teal,),
-  title: Text('Isamailia',
-  style: TextStyle(
-  fontSize: 17,
-    fontWeight: FontWeight.w600
-  ),
-  ),
-  onTap: (){
-    print('clicked');
-  },
-  trailing: Icon(Icons.arrow_forward_ios_outlined,),
-);

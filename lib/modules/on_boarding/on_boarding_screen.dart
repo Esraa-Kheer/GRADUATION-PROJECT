@@ -9,12 +9,14 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingModel{
   late final String image;
-  late final String title;
+  late final String title1;
+  late final String title2;
   late final String body;
 
 
   BoardingModel({
-    required this.title,
+    required this.title1,
+    required this.title2,
     required this.image,
     required this.body
 });
@@ -32,24 +34,28 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   List<BoardingModel> boarding=[
     BoardingModel(
-        title: 'On Board1 Title',
+        title1: 'Enjoy ',
+        title2: 'The World!',
         image: 'assets/images/1.png',
-        body: 'On Board1 Body'
+        body: 'Traveling to new destinations is always an experience. Let these talks encourage you to think differently about the places you visit and the people you see.'
     ),
     BoardingModel(
-        title: 'On Board2 Title',
+        title1: 'Enjoy ',
+        title2: 'The World!',
         image: 'assets/images/2.png',
-        body: 'On Board2 Body'
+        body: 'Traveling to new destinations is always an experience. Let these talks encourage you to think differently about the places you visit and the people you see.'
     ),
     BoardingModel(
-        title: 'On Board3 Title',
+        title1: 'Enjoy ',
+        title2: 'The World!',
         image: 'assets/images/3.png',
-        body: 'On Board3 Body'
+        body: 'Traveling to new destinations is always an experience. Let these talks encourage you to think differently about the places you visit and the people you see.'
     ),
     BoardingModel(
-        title: 'On Board4 Title',
+        title1: 'Enjoy',
+        title2: 'The World!',
         image: 'assets/images/4.png',
-        body: 'On Board4 Body'
+        body: 'Traveling to new destinations is always an experience. Let these talks encourage you to think differently about the places you visit and the people you see.'
     ),
   ];
   bool isLast=false;
@@ -157,20 +163,34 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
         ),
       ),
-      const SizedBox(height: 15,),
+      const SizedBox(height: 5,),
       Text(
-        model.title,
+        model.title1,
         style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold
+            fontSize: 50,
+            letterSpacing: 10,
+            fontFamily: 'AovelSansRounded',
+            fontWeight: FontWeight.bold,
+          color: Colors.teal
         ),
       ),
+      Text(
+        model.title2,
+        style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black54
+        ),
+      ),
+
       const SizedBox(height: 15,),
       Text(
         model.body,
         style: const TextStyle(
             fontSize: 14,
-            fontWeight: FontWeight.bold
+            fontWeight: FontWeight.w600,
+          fontFamily: 'AovelSansRounded',
+          letterSpacing: 2
         ),
       ),
     ],

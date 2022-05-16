@@ -26,6 +26,7 @@ class CitiesModel {
 }
 
 class Data {
+  late String pic;
  late String name;
  late String area;
  late String population;
@@ -35,6 +36,7 @@ class Data {
  late String id;
 
   Data.fromJson(Map<String, dynamic> json) {
+    pic=json['pic'];
     name = json['name'];
     area = json['area'];
     population = json['population'];

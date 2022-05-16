@@ -1,18 +1,42 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapScreen extends StatelessWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class MapScreen extends StatefulWidget {
+  //const MapScreen({Key? key}) : super(key: key);
+  late dynamic lng;
+  late dynamic lat;
+  MapScreen(
+       this.lng,
+      this.lat,
+      );
+
+  @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  var marker=HashSet<Marker>();
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(),
-      body: const GoogleMap(
+      body:  GoogleMap(
         initialCameraPosition: CameraPosition(
-            target: LatLng(30.0561,31.2394),
-          zoom:6
+            target: LatLng(widget.lng,widget.lat,),
+          zoom:7
         ),
+        onMapCreated: (GoogleMapController googleController){
+          setState(() {
+            marker.add(Marker(
+                markerId: MarkerId('1'),
+                position:LatLng(widget.lng,widget.lat,)
+            ),);
+          });
+        },
+        markers:marker ,
       ),
     );
   }
