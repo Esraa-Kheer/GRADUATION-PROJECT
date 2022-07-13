@@ -60,7 +60,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                 },
                 icon: Icon(Icons.search),
                 color: Colors.white,
-              )
+              ),
+
             ],
           ),
           body:cubit.bottomScreens[cubit.currentIndex] ,

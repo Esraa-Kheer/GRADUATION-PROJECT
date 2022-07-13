@@ -26,7 +26,7 @@ class _MapScreenState extends State<MapScreen> {
       body:  GoogleMap(
         initialCameraPosition: CameraPosition(
             target: LatLng(widget.lng,widget.lat,),
-          zoom:7
+          zoom:10
         ),
         onMapCreated: (GoogleMapController googleController){
           setState(() {

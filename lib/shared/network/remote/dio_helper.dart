@@ -8,20 +8,24 @@ class DioHelper{
       BaseOptions(
         baseUrl: 'https://bakr-app.herokuapp.com/api/',
         receiveDataWhenStatusError: true,
-        headers: {
-          'Content-Type':'application/json',
-        }
-      )
+      ),
     );
   }
   static Future<Response> getData({
     required String url,
-    Map<String,dynamic>? query,
-    String? token,
-    String? id,
+    Map<String,dynamic> ?query,
+    final dynamic token,
+    //String? id,
 })async
   {
-    return await dio.get(url,queryParameters:query );
+    dio.options.headers={
+      'Authorization': token??'',
+      'Content-Type': 'application/json',
+    };
+    return await dio.get(
+        url,
+        queryParameters:query
+    );
   }
 
   static Future<Response> postData({
@@ -30,6 +34,10 @@ class DioHelper{
      required Map<String,dynamic>data,
       String? token
 })async{
+    dio.options.headers={
+      'Authorization': token??'',
+      'Content-Type': 'application/json',
+    };
     return dio.post(
       url,
       queryParameters: query,

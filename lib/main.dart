@@ -2,6 +2,7 @@ import 'package:e_guide/layout/cubit/cubit.dart';
 import 'package:e_guide/models/city_model/city_model.dart';
 import 'package:e_guide/modules/log_in/log_in_screen.dart';
 import 'package:e_guide/shared/bloc_observer.dart';
+import 'package:e_guide/shared/network/end_points.dart';
 import 'package:e_guide/shared/network/local/cashe_helper.dart';
 import 'package:e_guide/shared/network/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ void main()async {
    await CasheHelper.init();
    Widget widget;
    dynamic onBoarding = CasheHelper.getData(key: 'onBoarding');
-   dynamic token = CasheHelper.getData(key: 'token');
+    late dynamic token = CasheHelper.getData(key: 'token');
    //dynamic id=CasheHelper.getData(key: 'id');
 
    if(onBoarding!=null){
@@ -45,7 +46,7 @@ MyApp({
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => AppCubit()..getCities(),
+            create: (context) => AppCubit()..getHomeData()..getCities()..getUserData(),
         ),
       ],
       child: MaterialApp(

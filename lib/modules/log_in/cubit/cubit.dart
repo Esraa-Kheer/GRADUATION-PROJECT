@@ -3,6 +3,7 @@ import 'package:e_guide/models/login_model/login_model.dart';
 import 'package:e_guide/modules/log_in/cubit/states.dart';
 import 'package:e_guide/modules/register/register_screen.dart';
 import 'package:e_guide/shared/network/end_points.dart';
+import 'package:e_guide/shared/network/local/cashe_helper.dart';
 import 'package:e_guide/shared/network/remote/dio_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,8 +27,16 @@ DioHelper.postData(
 }) .then((value){
   //print(value.data);
   loginModel=AppLoginModel.fromJson(value.data);
+  print(loginModel.data);
   print(loginModel.status);
+  
   emit(AppLoginSuccessState(loginModel));
+  var token=loginModel.data.token;
+  print('Api token$token');
+
+  CasheHelper.saveData(key: 'Authorization', value: token);
+  var tokenn=CasheHelper.getData(key: 'Authorization');
+  print('This is my token $tokenn');
 }).catchError((error){
   print(error.toString());
   emit(AppLoginErrorState(error.toString()));
